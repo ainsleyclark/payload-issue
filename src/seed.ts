@@ -101,6 +101,7 @@ export const seed = async () => {
     if (mediaPromises.length >= MEDIA_CONCURRENCY * 5 || i === MEDIA_ITEMS_AMOUNT - 1) {
       const results = await Promise.all(mediaPromises);
       const validResults = results.filter(Boolean);
+      // @ts-expect-error
       mediaItems.push(...validResults);
       mediaPromises.length = 0;
       logger.info(`Batch complete. Total media items processed: ${mediaItems.length}`);
@@ -116,6 +117,7 @@ export const seed = async () => {
   if (mediaPromises.length > 0) {
     const results = await Promise.all(mediaPromises);
     const validResults = results.filter(Boolean);
+    // @ts-expect-error
     mediaItems.push(...validResults);
     logger.info(`Final media batch complete. Total media items: ${mediaItems.length}`);
   }
@@ -155,7 +157,7 @@ export const seed = async () => {
               name: faker.company.name(),
               featuredImage: getRandomMediaId(),
               logo: getRandomMediaId(),
-              // @ts-ignore
+              // @ts-expect-error
               images: Array(3).fill(null).map(() => getRandomMediaId()).filter(Boolean),
             }
           });
