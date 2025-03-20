@@ -18,36 +18,24 @@ export const Centres: CollectionConfig = {
         },
         {
           label: 'Media',
-          fields: [
-            {
-              name: 'featuredImage',
-              label: 'Featured Image',
-              type: 'upload',
-              relationTo: 'media',
-              filterOptions: {
-                mimeType: {contains: 'image'},
-              },
-            },
-            {
-              name: 'logo',
-              label: 'Logo',
-              type: 'upload',
-              relationTo: 'media',
-              filterOptions: {
-                mimeType: {contains: 'image'},
-              },
-            },
-            {
-              name: 'images',
-              label: 'Images',
-              type: 'upload',
-              relationTo: 'media',
-              hasMany: true,
-              filterOptions: {
-                mimeType: {contains: 'image'},
-              },
-            },
-          ]
+         fields: [
+           {
+             name: 'media',
+             type: 'group',
+             fields: [
+               {
+                 name: 'images',
+                 label: 'Images',
+                 type: 'upload',
+                 relationTo: 'media',
+                 hasMany: true,
+                 filterOptions: {
+                   mimeType: {contains: 'image'},
+                 },
+               },
+             ]
+           }
+         ]
         }
       ]
     },

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "dev": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=512\" next dev",
+    "dev": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=2048 --inspect\" next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
@@ -16,6 +16,7 @@
     "seed": "PAYLOAD_DROP_DATABASE=true payload run src/seed.ts"
   },
   "dependencies": {
+    "@ainsleydev/payload-helper": "0.0.29",
     "@payloadcms/db-postgres": "3.27.0",
     "@payloadcms/next": "3.27.0",
     "@payloadcms/payload-cloud": "3.27.0",

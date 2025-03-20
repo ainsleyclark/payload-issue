@@ -137,7 +137,33 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  source: string;
+  sourceUrl?: string | null;
+  meta:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -231,9 +257,9 @@ export interface Media {
 export interface Centre {
   id: number;
   name: string;
-  featuredImage?: (number | null) | Media;
-  logo?: (number | null) | Media;
-  images?: (number | Media)[] | null;
+  media?: {
+    images?: (number | Media)[] | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -319,6 +345,10 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
+  source?: T;
+  sourceUrl?: T;
+  meta?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -431,9 +461,11 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CentresSelect<T extends boolean = true> {
   name?: T;
-  featuredImage?: T;
-  logo?: T;
-  images?: T;
+  media?:
+    | T
+    | {
+        images?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

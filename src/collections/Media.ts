@@ -89,6 +89,30 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
+      label: 'Alternative Text',
+    },
+    {
+      name: 'caption',
+      type: 'richText',
+      label: 'Caption',
+    },
+    {
+      name: 'source',
+      label: 'Source',
+      type: 'text',
+      defaultValue: 'user',
+      required: true,
+    },
+    {
+      name: 'sourceUrl',
+      label: 'Source URL',
+      type: 'text',
+      unique: true,
+    },
+    {
+      name: 'meta',
+      type: 'json',
+      defaultValue: '{}',
       required: true,
     },
   ],
