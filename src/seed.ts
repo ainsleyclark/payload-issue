@@ -155,8 +155,9 @@ export const seed = async () => {
             collection: 'centres',
             data: {
               name: faker.company.name(),
-              // @ts-expect-error
-              images: Array(3).fill(null).map(() => getRandomMediaId()).filter(Boolean),
+              media: {
+                images: Array(3).fill(null).map(() => getRandomMediaId()).filter(Boolean),
+              },
             }
           });
 
